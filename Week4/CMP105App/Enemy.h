@@ -1,5 +1,7 @@
 #pragma once
 #include "Framework/GameObject.h"
+#include "Background.h"
+
 class Enemy: public GameObject
 {
 public:
@@ -7,7 +9,7 @@ public:
 
 	Enemy(sf::String TexturePath);
 
-	void Bounce(sf::RenderWindow& window, float dt);
+	void Bounce(Background window, float dt);
 
 private:
 

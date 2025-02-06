@@ -6,6 +6,8 @@
 #include "Framework/GameObject.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "Background.h";
+#include "Cursor.h";
 #include <string.h>
 #include <iostream>
 
@@ -25,6 +27,12 @@ private:
 
 	Enemy enemyObject1;
 
-	Enemy enemyObject2;
+	Enemy enemyObject2{"gfx/Beach_Ball.png"};
+
+	Background background;
+
+	Cursor cursor;
+
+	sf::View view;
 
 };
