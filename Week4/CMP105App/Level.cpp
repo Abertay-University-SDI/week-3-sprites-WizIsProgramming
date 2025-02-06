@@ -1,4 +1,5 @@
 #include "Level.h"
+#include "Player.h"
 
 Level::Level(sf::RenderWindow* hwnd, Input* in)
 {
@@ -6,11 +7,10 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 	input = in;
 
 	// initialise game objects
-	texture.loadFromFile("gfx/Mushroom.png");
-
-	testSprite.setTexture(&texture);
-	testSprite.setSize(sf::Vector2f(100, 100));
-	testSprite.setPosition(100, 100);
+	enemyObject1.setPosition(250, 250);
+	playerObject.setSize(sf::Vector2f(100, 100));
+	playerObject.setPosition(100, 100);
+	playerObject.setInput(input);
 
 }
 
@@ -22,6 +22,7 @@ Level::~Level()
 // handle user input
 void Level::handleInput(float dt)
 {
+	playerObject.HandleControls(*window, dt);
 	// Close window on Escape pressed.
 	if (input->isKeyDown(sf::Keyboard::Escape))
 	{
@@ -33,7 +34,7 @@ void Level::handleInput(float dt)
 // Update game objects
 void Level::update(float dt)
 {
-	
+	enemyObject1.Bounce(*window,dt);
 }
 
 // Render level
@@ -41,7 +42,9 @@ void Level::render()
 {
 	beginDraw();
 
-	window->draw(testSprite);
+	window->draw(enemyObject1);
+
+	window->draw(playerObject);
 
 	endDraw();
 }
